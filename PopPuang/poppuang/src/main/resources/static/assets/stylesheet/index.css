@@ -70,3 +70,43 @@ body {
 .leaderboard tr:hover {
     background-color: #f2f2f2;
 }
+
+
+/* 선택 상자 스타일링 */
+.select-wrapper {
+    display: inline-block;
+    position: relative;
+    width: 150px;
+    margin-bottom: 10px;
+}
+
+.select-wrapper select {
+    width: 100%;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    cursor: pointer;
+    appearance: none;
+}
+
+.select-wrapper select::-ms-expand {
+    display: none;
+}
+
+.select-arrow {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+/* 라벨 스타일링 */
+.select-label {
+    display: block;
+    margin-bottom: 5px;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 16px;
+}
