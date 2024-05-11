@@ -41,3 +41,64 @@ openImage.addEventListener('mouseup', function() {
         // document.getElementById('status').textContent = '사진이 닫혀 있습니다.';
     }
 });
+
+
+closeImage.addEventListener('touchstart', function() {
+    // 이미지 상태 변경
+    isImageOpen = !isImageOpen;
+    clickCount++;
+    // 숫자 요소에 횟수 표시
+    numberElement.textContent = clickCount;
+
+    // 이미지 상태에 따라 보이기/숨기기 처리
+    if (isImageOpen) {
+        closeImage.style.display = 'none';
+        openImage.style.display = 'block';
+        // document.getElementById('status').textContent = '사진이 열려 있습니다.';
+    }
+});
+
+openImage.addEventListener('touchend', function() {
+    // 이미지 상태 변경
+    isImageOpen = !isImageOpen;
+    // 이미지 상태에 따라 보이기/숨기기 처리
+    if (!isImageOpen) {
+        closeImage.style.display = 'block';
+        openImage.style.display = 'none';
+        // document.getElementById('status').textContent = '사진이 닫혀 있습니다.';
+    }
+});
+
+
+
+// 데이터 업데이트 함수
+function updateLeaderboard() {
+    // fetch('your_api_url_here')
+    fetch('/pop')
+        .then(response => response.json())
+        .then(data => {
+            const leaderboardBody = document.getElementById('leaderboard-body');
+
+            // 테이블 초기화
+            leaderboardBody.innerHTML = '';
+
+            // 데이터를 테이블에 삽입
+            data.forEach((item, index) => {
+                const row = `
+                            <tr>
+                                <td>${index + 1}</td>
+                                <td>${item.department}</td>
+                                <td>${item.touch_count}</td>
+                            </tr>
+                        `;
+                leaderboardBody.innerHTML += row;
+            });
+        })
+        .catch(error => console.error('Error fetching leaderboard data:', error));
+}
+
+// 초기 실행
+updateLeaderboard();
+
+// 10초마다 업데이트
+setInterval(updateLeaderboard, 10000);
