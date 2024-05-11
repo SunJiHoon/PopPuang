@@ -4,16 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>POPPUANG</title>
-    <style>
-        body {
-            background-image: url('./assets/images/background.png');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-        }
-    </style>
+    <link rel="stylesheet" href="/assets/stylesheet/index.css">
+
 </head>
 <body>
-<!-- 여기에 내용 추가 -->
+    <p class="pop-puang">POP PUANG</p>
+    <p class ="click-count" id="number">0</p>
+
+<!--    <img id="poppuang-image_close"  class="image-toggle" src="/assets/images/poppuang_close.png" alt="배경 이미지">-->
+<!--    <img id="poppuang-image_open"  class="image-toggle" src="/assets/images/poppuang_open.png" alt="배경 이미지">-->
+    <div class="image-container">
+        <!-- 닫힌 상태 이미지 -->
+        <img id="poppuang-image_close" class="image-toggle" src="/assets/images/poppuang_close.png" alt="닫힌 배경 이미지" >
+        <!-- 열린 상태 이미지 -->
+        <img id="poppuang-image_open" class="image-toggle" src="/assets/images/poppuang_open.png" alt="열린 배경 이미지">
+    </div>
+
 </body>
+<script src="/assets/javascript/index.js"></script>
+
 </html>
