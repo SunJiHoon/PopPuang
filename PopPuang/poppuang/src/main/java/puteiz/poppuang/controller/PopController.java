@@ -23,7 +23,8 @@ public class PopController {
 
     }
 
-    @GetMapping("/abc/{departmentName}")
+
+    @GetMapping("/popCount/{departmentName}")
     @ResponseBody
     public int getCount(@PathVariable(name = "departmentName") String departmentName) {
         return departmentService.getCount(departmentName);
