@@ -1,13 +1,13 @@
-package putiez.PopPuang;
+package puteiz.poppuang;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class PopPuangApplication {
+public class PoppuangApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(PopPuangApplication.class, args);
+		SpringApplication.run(PoppuangApplication.class, args);
 	}
 
 }

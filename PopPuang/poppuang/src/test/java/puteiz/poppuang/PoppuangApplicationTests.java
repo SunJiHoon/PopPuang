@@ -1,10 +1,10 @@
-package putiez.PopPuang;
+package puteiz.poppuang;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class PopPuangApplicationTests {
+class PoppuangApplicationTests {
 
 	@Test
 	void contextLoads() {
