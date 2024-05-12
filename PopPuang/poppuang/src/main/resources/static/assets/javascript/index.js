@@ -1,3 +1,28 @@
+function sendPostRequest(department) {
+    fetch('/pop', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body:
+        // "department="+department
+            JSON.stringify({
+            department: department
+        })
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            // Handle response
+        })
+        .catch(error => {
+            console.error('There was a problem with your fetch operation:', error);
+        });
+}
+
+
+
 // 이미지 요소 가져오기
 // const poppuangImage = document.getElementById('poppuang-image');
 // 숫자가 표시될 요소 가져오기
@@ -17,6 +42,12 @@ let isMouseDown = false;
 
 // 이미지 클릭 이벤트 리스너 추가
 closeImage.addEventListener('mousedown', function() {
+    // 선택한 부서 값 가져오기
+    var departmentSelect = document.getElementById('department-select');
+    var selectedDepartment = departmentSelect.value;
+
+    sendPostRequest(selectedDepartment);
+
     // 이미지 상태 변경
     isImageOpen = !isImageOpen;
     clickCount++;
@@ -44,6 +75,11 @@ openImage.addEventListener('mouseup', function() {
 
 
 closeImage.addEventListener('touchstart', function() {
+    var departmentSelect = document.getElementById('department-select');
+    var selectedDepartment = departmentSelect.value;
+
+    sendPostRequest(selectedDepartment);
+
     // 이미지 상태 변경
     isImageOpen = !isImageOpen;
     clickCount++;

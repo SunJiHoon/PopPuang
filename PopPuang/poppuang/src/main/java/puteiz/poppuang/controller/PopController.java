@@ -8,6 +8,8 @@ import puteiz.poppuang.repository.DepartmentRepository;
 import puteiz.poppuang.service.CountService;
 import puteiz.poppuang.service.DepartmentService;
 
+import java.util.Map;
+
 @RestController
 public class PopController {
 
@@ -17,8 +19,14 @@ public class PopController {
     @Autowired
     DepartmentService departmentService;
 
+//    @PostMapping("/pop")
+//    public void popController(@RequestParam("department") String department) {
+//        countService.increaseCount(department);
+//
+//    }
     @PostMapping("/pop")
-    public void popController(@RequestParam("department") String department) {
+    public void popController(@RequestBody Map<String, Object> payload) {
+        String department = (String) payload.get("department");
         countService.increaseCount(department);
 
     }
