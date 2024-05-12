@@ -64,9 +64,12 @@ let isMouseDown = false;
 
 // 이미지 클릭 이벤트 리스너 추가
 closeImage.addEventListener('mousedown', function() {
+    // 이전에 재생 중인 Audio 객체가 있으면 중지
+    audio.pause();
+    audio.play();
     // 선택한 부서 값 가져오기
     var departmentSelect = document.getElementById('department-select');
-    var selectedDepartment = departmentSelect.value;
+    var selectedDepartment = departmentSedlect.value;
 
     sendPostRequest(selectedDepartment);
     updateClickCount();
@@ -165,6 +168,9 @@ setTimeout(updateLeaderboard, 1000);
 setInterval(updateLeaderboard, 10000);
 
 document.addEventListener('DOMContentLoaded', function() {
+    //소리 초기화
+    initPlaySound();
+    
     // 페이지 로드가 완료되면 초기 실행
     updateClickCount();
 
@@ -177,3 +183,16 @@ document.addEventListener('DOMContentLoaded', function() {
         updateClickCount();
     });
 });
+
+var audio;
+function initPlaySound() {
+    // 음성 파일의 URL
+    var soundURL = '/assets/audio/popSound_big.m4a'; // 실제 음성 파일의 URL로 변경해야 합니다.
+
+    // Audio 객체 생성
+    audio = new Audio(soundURL);
+
+    // 음성 재생
+    // audio.play();
+}
+
