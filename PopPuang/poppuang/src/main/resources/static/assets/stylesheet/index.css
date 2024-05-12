@@ -63,13 +63,17 @@ body {
     color: #333;
 }
 
-.leaderboard tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
+/*.leaderboard tr:nth-child(even) {*/
+/*    background-color: #f9f9f9;*/
+/*}*/
 
-.leaderboard tr:hover {
+.leaderboard tr {
     background-color: #f2f2f2;
 }
+
+/*.leaderboard tr:hover {*/
+/*    background-color: #f2f2f2;*/
+/*}*/
 
 
 /* 선택 상자 스타일링 */

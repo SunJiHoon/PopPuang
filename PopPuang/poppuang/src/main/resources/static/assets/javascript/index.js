@@ -1,3 +1,25 @@
+function updateClickCount() {
+    // 선택한 부서 값 가져오기
+    var departmentSelect = document.getElementById('department-select');
+    var selectedDepartment = departmentSelect.value;
+
+    fetch('/popCount/'+selectedDepartment) // 요청을 보낼 엔드포인트를 적절히 변경해야 합니다.
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text(); // 응답을 텍스트로 변환하여 반환
+        })
+        .then(data => {
+            // 응답 데이터를 가져와서 요소 내용을 업데이트
+            var clickCountElement = document.getElementById('getNumber');
+            clickCountElement.textContent = data;
+        })
+        .catch(error => {
+            console.error('There was a problem with your fetch operation:', error);
+        });
+}
+
 function sendPostRequest(department) {
     fetch('/pop', {
         method: 'POST',
@@ -47,6 +69,7 @@ closeImage.addEventListener('mousedown', function() {
     var selectedDepartment = departmentSelect.value;
 
     sendPostRequest(selectedDepartment);
+    updateClickCount();
 
     // 이미지 상태 변경
     isImageOpen = !isImageOpen;
@@ -79,6 +102,7 @@ closeImage.addEventListener('touchstart', function() {
     var selectedDepartment = departmentSelect.value;
 
     sendPostRequest(selectedDepartment);
+    updateClickCount();
 
     // 이미지 상태 변경
     isImageOpen = !isImageOpen;
@@ -110,7 +134,7 @@ openImage.addEventListener('touchend', function() {
 // 데이터 업데이트 함수
 function updateLeaderboard() {
     // fetch('your_api_url_here')
-    fetch('/pop')
+    fetch('/popCount/ranking')
         .then(response => response.json())
         .then(data => {
             const leaderboardBody = document.getElementById('leaderboard-body');
@@ -123,8 +147,8 @@ function updateLeaderboard() {
                 const row = `
                             <tr>
                                 <td>${index + 1}</td>
-                                <td>${item.department}</td>
-                                <td>${item.touch_count}</td>
+                                <td>${item.name}</td>
+                                <td>${item.count}</td>
                             </tr>
                         `;
                 leaderboardBody.innerHTML += row;
@@ -132,9 +156,24 @@ function updateLeaderboard() {
         })
         .catch(error => console.error('Error fetching leaderboard data:', error));
 }
-
-// 초기 실행
-updateLeaderboard();
+//
+// // 초기 실행
+// updateLeaderboard();
+setTimeout(updateLeaderboard, 1000);
 
 // 10초마다 업데이트
 setInterval(updateLeaderboard, 10000);
+
+document.addEventListener('DOMContentLoaded', function() {
+    // 페이지 로드가 완료되면 초기 실행
+    updateClickCount();
+
+    // select 요소 가져오기
+    var departmentSelect = document.getElementById('department-select');
+
+    // select 요소에 change 이벤트 리스너 추가
+    departmentSelect.addEventListener('change', function() {
+        // updateClickCount 함수 실행
+        updateClickCount();
+    });
+});
