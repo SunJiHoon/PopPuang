@@ -9,6 +9,7 @@ body {
 .image-container {
     display: flex; /* Flexbox를 사용하여 가운데 정렬 */
     justify-content: center; /* 수평 가운데 정렬 */
+    /*text-align: center; !* 이미지를 가운데 정렬하기 위해 부모 요소의 텍스트 정렬을 설정 *!*/
 }
 
 .image-toggle {

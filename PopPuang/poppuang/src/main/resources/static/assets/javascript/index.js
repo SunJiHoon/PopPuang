@@ -66,10 +66,11 @@ let isMouseDown = false;
 closeImage.addEventListener('mousedown', function() {
     // 이전에 재생 중인 Audio 객체가 있으면 중지
     audio.pause();
+    audio.currentTime = 0;
     audio.play();
     // 선택한 부서 값 가져오기
     var departmentSelect = document.getElementById('department-select');
-    var selectedDepartment = departmentSedlect.value;
+    var selectedDepartment = departmentSelect.value;
 
     sendPostRequest(selectedDepartment);
     updateClickCount();
@@ -101,6 +102,10 @@ openImage.addEventListener('mouseup', function() {
 
 
 closeImage.addEventListener('touchstart', function() {
+    // 이전에 재생 중인 Audio 객체가 있으면 중지
+    audio.pause();
+    audio.currentTime = 0;
+    audio.play();
     var departmentSelect = document.getElementById('department-select');
     var selectedDepartment = departmentSelect.value;
 
@@ -187,7 +192,7 @@ document.addEventListener('DOMContentLoaded', function() {
 var audio;
 function initPlaySound() {
     // 음성 파일의 URL
-    var soundURL = '/assets/audio/popSound_big.m4a'; // 실제 음성 파일의 URL로 변경해야 합니다.
+    var soundURL = '/assets/audio/popSound_big2.m4a'; // 실제 음성 파일의 URL로 변경해야 합니다.
 
     // Audio 객체 생성
     audio = new Audio(soundURL);
